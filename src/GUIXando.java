@@ -1,4 +1,4 @@
-//Add a reset button and a text field displaying who's turn it is
+//Add a reset button
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -12,6 +12,7 @@ public class GUIXando extends JFrame implements ActionListener
 	/////////
 	JPanel pnlInfo = new JPanel(null); //Uses a null layout
 	JButton buttons[] = new JButton[9];
+        JLabel lblTurnLabel = new JLabel("Crosses, it's your turn!");
 	///////
 	
 	public void runGUI()
@@ -50,6 +51,9 @@ public class GUIXando extends JFrame implements ActionListener
 			}
 			r=r+51;
 		}
+                lblTurnLabel.setSize(200, 20);
+                lblTurnLabel.setLocation(300, 100);
+                pnlInfo.add(lblTurnLabel);
 	}
 	
 	public boolean isDraw()
@@ -125,11 +129,13 @@ public class GUIXando extends JFrame implements ActionListener
 			{
 				gridButton.setText("X");
 				isCrosses=false;
+                                lblTurnLabel.setText("Noughts, it's your turn!");
 			}
 			else if(isCrosses==false)
 			{
 				gridButton.setText("O");
 				isCrosses=true;
+                                lblTurnLabel.setText("Crosses, it's your turn!");
 			}
 			else
 			{
