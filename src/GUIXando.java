@@ -1,4 +1,4 @@
-//Add a reset button and a text field displaying who's turn it is (could also say winner/draw and could be done with an alert box)
+//Add a reset button and a text field displaying who's turn it is
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -140,12 +140,12 @@ public class GUIXando extends JFrame implements ActionListener
 		}
 		if(hasGameFinished().equals("d"))
 		{
-			System.out.println("It's a draw!");
+			JOptionPane.showMessageDialog(null, "It's a draw!");
 			disableButtons();
 		}
 		else if(hasGameFinished().equals("X")||hasGameFinished().equals("O"))
 		{
-			System.out.println(hasGameFinished()+"'s, has won!");
+			JOptionPane.showMessageDialog(null, hasGameFinished()+"'s, has won!");
 			disableButtons();
 		}
 	}
