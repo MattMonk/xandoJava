@@ -1,26 +1,28 @@
-//Add a reset button
+//Add a reset button (@133)
 
 import javax.swing.*;
 import java.awt.event.*;
 
 public class GUIXando extends JFrame implements ActionListener
 {
-	boolean isCrosses=true;
-
+         boolean isCrosses;
+    
 	JTabbedPane tp = new JTabbedPane();
 	
 	/////////
 	JPanel pnlInfo = new JPanel(null); //Uses a null layout
 	JButton buttons[] = new JButton[9];
         JLabel lblTurnLabel = new JLabel("Crosses, it's your turn!");
+        JButton resetButton = new JButton("Reset");
 	///////
 	
 	public void runGUI()
 	{
-		this.setTitle("Noughts and Crosses");
-		this.setSize(800, 800);
-		this.setLocation(10, 10);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                isCrosses=true;
+                this.setTitle("Noughts and Crosses");
+                this.setSize(800, 800);
+                this.setLocation(10, 10);
+                this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		createInfoPanel();
 		
@@ -44,6 +46,7 @@ public class GUIXando extends JFrame implements ActionListener
 				buttons[i].setSize(50, 50);
 				buttons[i].setLocation(c, r);
 				buttons[i].setText("");
+                                buttons[i].setEnabled(true);
 				buttons[i].addActionListener(this);
 				pnlInfo.add(buttons[i]);
 				i++;
@@ -51,9 +54,15 @@ public class GUIXando extends JFrame implements ActionListener
 			}
 			r=r+51;
 		}
+                
                 lblTurnLabel.setSize(200, 20);
                 lblTurnLabel.setLocation(300, 100);
                 pnlInfo.add(lblTurnLabel);
+                
+                resetButton.setSize(100, 20);
+                resetButton.setLocation(300, 150);
+                resetButton.addActionListener(this);
+                pnlInfo.add(resetButton);
 	}
 	
 	public boolean isDraw()
@@ -119,6 +128,13 @@ public class GUIXando extends JFrame implements ActionListener
 	
 	public void actionPerformed(ActionEvent e)
 	{
+            if(e.getSource() == resetButton)
+            {
+                //runGUI();
+                //this.dispose();
+            }
+            else
+            {
 		//puts getSource into an object, makes sure it is the right type
 		//means that the buttons all do the same thing
 		Object source = e.getSource();
@@ -154,6 +170,7 @@ public class GUIXando extends JFrame implements ActionListener
 			JOptionPane.showMessageDialog(null, hasGameFinished()+"'s, has won!");
 			disableButtons();
 		}
+            }
 	}
 
 	public static void main(String[] args)
