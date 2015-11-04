@@ -10,14 +10,19 @@ public class GUIXando extends JFrame implements ActionListener
 	JTabbedPane tp = new JTabbedPane();
 	
 	/////////
-	JPanel pnlInfo = new JPanel(null); //Uses a null layout
-	JButton buttons[] = new JButton[9];
-        JLabel lblTurnLabel = new JLabel("Crosses, it's your turn!");
-        JButton resetButton = new JButton("Reset");
+	JPanel pnlInfo; //Uses a null layout
+	JButton buttons[];
+        JLabel lblTurnLabel;
+        JButton resetButton;
 	///////
 	
 	public void runGUI()
 	{
+		pnlInfo = new JPanel(null);
+		buttons = new JButton[9];
+		lblTurnLabel = new JLabel("Crosses, it's your turn!");
+		resetButton = new JButton("Reset");
+		
                 isCrosses=true;
                 this.setTitle("Noughts and Crosses");
                 this.setSize(800, 800);
@@ -130,8 +135,7 @@ public class GUIXando extends JFrame implements ActionListener
 	{
             if(e.getSource() == resetButton)
             {
-                //runGUI();
-                //this.dispose();
+				runGUI();
             }
             else
             {
