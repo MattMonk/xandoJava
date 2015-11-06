@@ -16,7 +16,7 @@ public class GUIXando extends JFrame implements ActionListener {
     JButton buttons[];
     JLabel lblTurnLabel;
     JButton newGameButton;
-	///////
+    ///////
 
     public void runGUI() {
         pnlInfo = new JPanel(null);
@@ -117,10 +117,14 @@ public class GUIXando extends JFrame implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == newGameButton) {
+        if (e.getSource() == newGameButton) 
+        {
+            newGameButton.setEnabled(false);
             runGUI();
-        } else {
-		//puts getSource into an object, makes sure it is the right type
+        }
+        else
+        {
+            //puts getSource into an object, makes sure it is the right type
             //means that the buttons all do the same thing
             Object source = e.getSource();
             if (source instanceof JButton) {
