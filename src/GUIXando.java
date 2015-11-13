@@ -5,7 +5,8 @@ import java.awt.event.*;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class GUIXando extends JFrame implements ActionListener {
+public class GUIXando extends JFrame implements ActionListener
+{
 
     boolean isCrosses;
 
@@ -18,7 +19,8 @@ public class GUIXando extends JFrame implements ActionListener {
     JButton newGameButton;
     ///////
 
-    public void runGUI() {
+    public void runGUI()
+    {
         pnlInfo = new JPanel(null);
         buttons = new JButton[9];
         lblTurnLabel = new JLabel("Crosses, it's your turn!");
@@ -40,13 +42,16 @@ public class GUIXando extends JFrame implements ActionListener {
         this.setVisible(true);
     }
 
-    public void createInfoPanel() {
+    public void createInfoPanel()
+    {
         int r = 100;
         int i = 0;
         int c = 0;
-        while (r < 203) {
+        while (r < 203)
+        {
             c = 100;
-            while (c < 203) {
+            while (c < 203)
+            {
                 buttons[i] = new JButton(String.valueOf(i));
                 buttons[i].setSize(50, 50);
                 buttons[i].setLocation(c, r);
@@ -70,90 +75,140 @@ public class GUIXando extends JFrame implements ActionListener {
         pnlInfo.add(newGameButton);
     }
 
-    public boolean isDraw() {
+    public boolean isDraw()
+    {
         int iCountSquares = 0;
 
-        for (int i = 0; i < 9; i++) {
-            if (buttons[i].getText().equals("") == false) {
+        for (int i = 0; i < 9; i++)
+        {
+            if (buttons[i].getText().equals("") == false)
+            {
                 iCountSquares++;
             }
         }
-        if (iCountSquares == 9) {
+        if (iCountSquares == 9)
+        {
             return true;
         }
         return false;
     }
     //make a 2d array with the possible locations for winning moves
-    final int[][] lines = {{0, 1, 2}, {3, 4, 5}, {6, 7, 8}, // rows
-    {0, 3, 6}, {1, 4, 7}, {2, 5, 8}, // columns
-    {0, 4, 8}, {2, 4, 6}}; // diagonals
+    final int[][] lines =
+    {
+        {
+            0, 1, 2
+        }, 
+        {
+            3, 4, 5
+        }, 
+        {
+            6, 7, 8
+        }, // rows
+        
+        {
+            0, 3, 6
+        }, 
+        {
+            1, 4, 7
+        }, 
+        {
+            2, 5, 8
+        }, // columns
+        
+        {
+            0, 4, 8
+        }, 
+        {
+            2, 4, 6
+        }
+    }; // diagonals
 
-    public String checkWin(int a, int b, int c) {
-        if (buttons[a].getText() == buttons[b].getText() && buttons[b].getText() == buttons[c].getText() && buttons[a].getText().equals("") == false) {
+    public String checkWin(int a, int b, int c)
+    {
+        if (buttons[a].getText() == buttons[b].getText() && buttons[b].getText() == buttons[c].getText() && buttons[a].getText().equals("") == false)
+        {
             return buttons[a].getText();
-        } else {
+        } else
+        {
             return null;
         }
     }
 
-    public String hasGameFinished() {
-        for (int i = 0; i < 8; i++) {
+    public String hasGameFinished()
+    {
+        for (int i = 0; i < 8; i++)
+        {
             String result = checkWin(lines[i][0], lines[i][1], lines[i][2]); //iterates through the 2d array with win locations and checks for a winner
-            if (result != null) {
+            if (result != null)
+            {
                 return result;
             }
         }
         //Draw
-        if (this.isDraw() == true) {
+        if (this.isDraw() == true)
+        {
             return "d";
         }
         return "";
     }
 
-    public void disableButtons() {
-        for (int i = 0; i < 9; i++) {
+    public void disableButtons()
+    {
+        for (int i = 0; i < 9; i++)
+        {
             buttons[i].setEnabled(false);
         }
     }
 
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == newGameButton) 
+    public void actionPerformed(ActionEvent e)
+    {
+        if (e.getSource() == newGameButton)
         {
             newGameButton.setEnabled(false);
             runGUI();
-        }
+        } 
         else
         {
             //puts getSource into an object, makes sure it is the right type
             //means that the buttons all do the same thing
             Object source = e.getSource();
-            if (source instanceof JButton) {
+            if (source instanceof JButton)
+            {
                 JButton gridButton = (JButton) source;
-                if (isCrosses == true) {
+                if (isCrosses == true)
+                {
                     gridButton.setText("X");
                     isCrosses = false;
                     lblTurnLabel.setText("Noughts, it's your turn!");
-                } else if (isCrosses == false) {
+                } 
+                else if (isCrosses == false)
+                {
                     gridButton.setText("O");
                     isCrosses = true;
                     lblTurnLabel.setText("Crosses, it's your turn!");
-                } else {
+                } 
+                else
+                {
                     System.out.println("What?");
                 }
                 gridButton.setEnabled(false);
 
             }
-            if (hasGameFinished().equals("d")) {
+            if (hasGameFinished().equals("d"))
+            {
                 JOptionPane.showMessageDialog(null, "It's a draw!");
                 disableButtons();
-            } else if (hasGameFinished().equals("X") || hasGameFinished().equals("O")) {
+            } 
+            else if (hasGameFinished().equals("X") || hasGameFinished().equals("O"))
+            {
                 JOptionPane.showMessageDialog(null, hasGameFinished() + "'s, has won!");
                 disableButtons();
             }
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         GUIXando gtemp = new GUIXando();
         gtemp.runGUI();
     }
